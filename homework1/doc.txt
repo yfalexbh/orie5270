@@ -1,0 +1,14 @@
+Fan Yang
+Homework 1: description of what we covered and why they matter
+
+Unix Shell: the shell provides a simple programming language and command line interface for users to execute programs. The advantages of a shell include easy reproducibility and large scalability. That said, when dealing with a large number of data or a repetitive workflow, the shell allows users to complete the work in possibly a few commands.
+
+Linux: Linux is an operating system that allows users to manage directories and file systems, and execute programs. The advantages of Linux include that it is an open source operating system, that it has compilers and various libraries, and that its performance can be optimized. 
+
+Git: git is a version control system to help users track changes in files while working with others. Users are able to modify the files to publish the latest version, or they can revert the files back to previous versions. Another big advantage of git is its capability of branching. Users will be able to branch whenever they feel necessary and put the pieces back together when done. 
+
+AWS: AWS is Amazon's cloud computing service allows users to use a virtual environment to execute programs under different operating systems and programming languages, as well as to access and store data remotely. The benefit of using AWS is that it can be far more scalable than local computers because of its ability to distribute work and optimize performance, and it is backed by a massive storage space. Users also get to use a different operating system that is more appropriate for the work than the one in their local computers.
+
+Python: Python is an open source, high-level programming language that allows users to write and execute programs using highly readible code. The syntax is easy to learn than low-level programming languages. Given that it's open source, it comes with a large number packages that allow users to program complex tasks using just a few functions. 
+
+Pycharm: PyCharm is an IDE for users to program in Python. There are several benefits with PyCharm. First of all, it is able to create project that allows users to navigate between files and folders for one program more easily. It also comes with a console, terminal and a shell so that the user is able to execute the program within PyCharm. An addition to the benefits mentioned above is that it also automatically checks for errors in the code before compiling. 
