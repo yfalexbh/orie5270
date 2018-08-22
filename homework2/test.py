@@ -1,5 +1,4 @@
-mport numpy as np
-
+# a tree structure
 class node(object):
 	def __init__(self, val):
 		self.val = val
@@ -30,14 +29,16 @@ class node(object):
 	def print_tree(self):
 		height = self.get_height()
 		allocated_len = 2**height - 1
-		allocated_space = -1e14*np.ones((height, allocated_len))
+		allocated_space = [[-1e14] * allocated_len]
+		for i in range(height - 1):
+			allocated_space.append([copy for copy in allocated_space[0]])
 		
 		def print_tree_helper(n, l, r, height, allocated_space):
 			if n is None:
 				return
 
 			pos = int((r+l)/2.)
-			allocated_space[height, pos] = n.get_val()
+			allocated_space[height][pos] = n.get_val()
 			print_tree_helper(n.left, l, pos-1, height+1, allocated_space)
 			print_tree_helper(n.right, pos+1, r, height+1, allocated_space)
 			return
@@ -46,10 +47,13 @@ class node(object):
 		for i in allocated_space:
 			for j in range(len(i)):
 				if i[j] == -1e14:
-					i[j] = None
-				i[j] = str(i[j])
-			print(i)
+					print('|'),
+				else:
+					print(str(i[j])),
+			print
 		
+		
+# test case
 x = node(3)
 x.set_left(5)
 x.set_right(7)
@@ -57,4 +61,11 @@ x.left.set_left(2)
 x.left.set_right(4)
 x.right.set_left(1)
 x.right.set_right(12)
+x.left.left.set_left(5)
+x.left.left.set_right(3)
+x.left.right.set_right(4)
+x.right.left.set_left(1)
+x.right.left.set_right(2)
+x.right.right.set_left(4)
+x.right.right.set_right(2)
 x.print_tree()
