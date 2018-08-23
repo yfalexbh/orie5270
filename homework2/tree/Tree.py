@@ -6,12 +6,18 @@ class Tree(object):
         self.right = None
 
     def set_left(self, left):
+        """
+        set the left child node of the given node
+        """
         self.left = Tree(left)
 
     def set_right(self, right):
         self.right = Tree(right)
 
     def get_height(self):
+        """
+        return the height of the tree, a tree with only a root will have height 1
+        """
         if self is None:
             return 0
         elif self.left is None and self.right is None:
@@ -24,10 +30,15 @@ class Tree(object):
         return 1 + max(self.left.get_height(), self.right.get_height())
 
     def get_val(self):
+        """
+        return the value of a given tree node
+        """
         return self.val
 
     def print_tree(self):
-
+        """
+        print the tree in console
+        """
         height = self.get_height()
         allocated_len = 2**height - 1
         allocated_space = [['|'] * allocated_len]
@@ -44,6 +55,15 @@ class Tree(object):
 
     @staticmethod
     def print_tree_helper(n, l, r, height, allocated_space):
+        """
+        helper function for print tree
+        :param n: a tree node
+        :param l: the index of the left end of a binary search
+        :param r: the index of the right end of a binary search
+        :param height: the height at the given tree node
+        :param allocated_space: the allocated space for the print
+        :return: the modified allocated_space
+        """
         if n is None:
             return allocated_space
 
