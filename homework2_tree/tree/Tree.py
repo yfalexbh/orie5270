@@ -16,7 +16,7 @@ class Tree(object):
 
     def get_height(self):
         """
-        return the height of the tree, a tree with only a root will have height 1
+        return: height of the tree
         """
         if self is None:
             return 0
@@ -31,13 +31,14 @@ class Tree(object):
 
     def get_val(self):
         """
-        return the value of a given tree node
+        return: value of the given node
         """
         return self.val
 
     def print_tree(self):
         """
         print the tree in console
+        return: the printed tree stored as a list of lists
         """
         height = self.get_height()
         allocated_len = 2**height - 1
