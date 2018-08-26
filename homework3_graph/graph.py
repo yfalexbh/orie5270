@@ -5,9 +5,49 @@ def negative_cycle(name_txt_file):
     """
     Find a negative cycle in the graph using Bellman-Ford algorithm
     param name_txt_file: the name of the text file in string
-    return: negative cycle in a list
+    return: if there is a negative cycle in the graph, a boolean
     """
+    d = _read_txt_helper(name_txt_file)
+    # create a synthetic source node
+    d['s'] = []
+    dist = {}
+    previous = {}
+    for i in d:
+        d['s'].append((i, 0.))
+        dist[i] = float('inf')
+        if i != 's':
+            previous[i] = None
 
+    dist['s'] = 0
+    for i in range(len(d.keys()) - 1):
+        for key, l in d.iteritems():
+            for val in l:
+                if dist[key] + val[1] < dist[val[0]]:
+                    dist[val[0]] = dist[key] + val[1]
+                    previous[val[0]] = key
+
+    flag = 0
+    negative_cycle_node = None
+    for key, l in d.iteritems():
+        for val in l:
+            if dist[key] + val[1] < dist[val[0]]:
+                flag = 1
+                ncycle_node = val[0]
+                break
+        if flag == 1:
+            break
+
+    if flag == 1:
+        visited = set()
+        cycle = [ncycle_node]
+        while ncycle_node not in visited:
+            cycle.append(previous[ncycle_node])
+            visited.add(ncycle_node)
+            ncycle_node = previous[ncycle_node]
+        return list(reversed(cycle))
+
+    return False
+    
 
 def find_shortest_path(name_txt_file, source, destination):
     """
@@ -27,7 +67,6 @@ def find_shortest_path(name_txt_file, source, destination):
     dist_to_node = {}
     while p_queue:
         ele = heapq.heappop(p_queue)
-        print(ele)
         if ele[1] not in visited:
             visited.add(ele[1])
             path = ele[2]
@@ -72,4 +111,17 @@ def _read_txt_helper(name_txt_file):
     return d
 
 if __name__ == '__main__':
-    print(find_shortest_path('graph.txt', 1, 5))
+    # find shortest path
+    print('\nFinding shortest path from 1 to 5:')
+    djikstra = find_shortest_path('graph.txt', 1, 5)
+    print('the shortest path is ' + '->'.join(djikstra[0])),
+    print(' with length ' + str(djikstra[1]) + '\n')
+
+    # detect negative cycle
+    print('Detecting negative cycle:')
+    temp = negative_cycle('graph.txt')
+    if not temp:
+        print('no negative cycle found in graph')
+
+    print('found the following negative cycle: '),
+    print('->'.join(temp) + '\n')
