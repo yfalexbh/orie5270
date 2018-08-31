@@ -46,7 +46,7 @@ def negative_cycle(name_txt_file):
             ncycle_node = previous[ncycle_node]
         return list(reversed(cycle))
 
-    return False
+    return None
     
 
 def find_shortest_path(name_txt_file, source, destination):
@@ -113,15 +113,15 @@ def _read_txt_helper(name_txt_file):
 if __name__ == '__main__':
     # find shortest path
     print('\nFinding shortest path from 1 to 5:')
-    djikstra = find_shortest_path('graph.txt', 1, 5)
+    djikstra = find_shortest_path('dijkstra_1.txt', 1, 4)
     print('the shortest path is ' + '->'.join(djikstra[0])),
     print(' with length ' + str(djikstra[1]) + '\n')
 
     # detect negative cycle
     print('Detecting negative cycle:')
-    temp = negative_cycle('graph.txt')
+    temp = negative_cycle('bellman_ford_1.txt')
     if not temp:
         print('no negative cycle found in graph')
-
-    print('found the following negative cycle: '),
-    print('->'.join(temp) + '\n')
+    else:
+        print('found the following negative cycle: '),
+        print('->'.join(temp) + '\n')
