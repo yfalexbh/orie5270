@@ -4,6 +4,10 @@ import numpy as np
 import numpy.linalg as npla
 from operator import add
 from operator import neg
+from sys import argv
+
+
+# usage in console: python kmeans.py data.txt c1.txt
 
 
 def spark_KMeans(points, centroids, max_iter=100):
@@ -34,8 +38,8 @@ def _text_file_helper(name_txt_file, sc):
 if __name__ == '__main__':
     # create a SparkContext
     sc = SparkContext('local')
-    data = _text_file_helper('data.txt', sc).cache()
-    centroids = _text_file_helper('c1.txt', sc).collect()
+    data = _text_file_helper(argv[1], sc).cache()
+    centroids = _text_file_helper(argv[2], sc).collect()
     out_centroids = spark_KMeans(data, centroids)
     file = open('result.txt', 'w')
     
